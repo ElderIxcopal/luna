@@ -84,7 +84,7 @@
 
             if ($resultInsert) {
                 echo('<center> <img src="../../imagenes/errorok.png"> Registro creado con éxito. </center>');
-                header("Refresh:0"); // Refrescar la página para mostrar los registros actualizados
+               // header("Refresh:0"); // Refrescar la página para mostrar los registros actualizados
             } else {
                 echo('<center> <img src="../../imagenes/error1.png"> Error al crear el registro. </center>');
             }
