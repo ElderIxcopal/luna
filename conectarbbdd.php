@@ -1,7 +1,7 @@
 <?php
 $servername = 'localhost';
 $username = 'root';
-$password = '';
+$password = '123456';
 $database = 'luna';
 
 // Crear la conexión
