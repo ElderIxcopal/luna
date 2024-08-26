@@ -11,33 +11,31 @@
             $query = "SELECT * FROM discapacidad";
             $result = $conn->query($query);
 
-            // Verifica si la consulta devolvió resultados
-            if ($result) {
-                // Preparar el archivo CSV para la descarga
-                header('Content-Type: text/csv');
-                header('Content-Disposition: attachment;filename="listado_disciplinas.csv"');
+            // Preparar el archivo CSV para la descarga
+            header('Content-Type: text/csv');
+            header('Content-Disposition: attachment;filename="listado_ascendencias.csv"');
 
-                $output = fopen('php://output', 'w');
+            $output = fopen('php://output', 'w');
 
-                // Escribir la cabecera del CSV
-                fputcsv($output, ['ID', 'Código de Discapacidad', 'Nombre de Discapacidad']);
+            // Escribir la cabecera del CSV
+            fputcsv($output, ['ID', 'Código de Ascendencia', 'Nombre de Ascendencia']);
 
-                // Escribir los datos en el CSV
-                while ($row = $result->fetch_assoc()) {
-                    fputcsv($output, [$row['id'], $row['codigoDiscapacidad'], $row['nombreDiscapacidad']]);
-                }
-
-                fclose($output);
-            } else {
-                echo "Error en la consulta: " . $conn->error;
+            // Escribir los datos en el CSV
+            while ($row = $result->fetch_assoc()) {
+                fputcsv($output, [$row['id'], $row['codigoDiscapacidad'], $row['nombreDiscapacidad']]);
             }
 
+            fclose($output);
             exit(); // Asegúrate de que el script termine después de la descarga
 
         } catch (Exception $e) {
             echo "Error: " . $e->getMessage();
         }
     }
+
+
+    //ob_start() inicia el búfer de salida.
+//ob_end_clean() limpia el búfer y evita cualquier salida antes de modificar los encabezados.
 
     // Limpia el búfer de salida y continúa con el HTML
     ob_end_clean();
@@ -48,7 +46,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listado de Discapacidad</title>
+    <title>Listado de Ascendencias</title>
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
     <script src="../../js/bootstrap.min.js"></script>
     <script src="../../js/bootstrap.bundle.min.js"></script>
@@ -56,7 +54,7 @@
 <body>
     <br>
     <div class="container">
-        <h4>Listado de Discapacidad:</h4>
+        <h4>Listado de Ascendencias:</h4>
 
         <!-- Botón para exportar a CSV -->
         <form method="GET" action="">
@@ -67,8 +65,8 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Código de Discapacidad</th>
-                    <th>Nombre de Discapacidad</th>
+                    <th>Código de Ascendencia</th>
+                    <th>Nombre de Ascendencia</th>
                 </tr>
             </thead>
             <tbody>
@@ -87,8 +85,10 @@
                             echo "</tr>";
                         }
                     } else {
-                        echo "<tr><td colspan='3'>No hay registros de discapacidad.</td></tr>";
+                        echo "<tr><td colspan='3'>No hay registros de ascendencias.</td></tr>";
                     }
+
+                   // (como menu.php y conectarbbdd.php).
 
                     $conn->close(); // Cierra la conexión a la base de datos
                 ?>
@@ -97,3 +97,4 @@
     </div>
 </body>
 </html>
+
